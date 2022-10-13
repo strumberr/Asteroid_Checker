@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index_css.css')}}" />
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<div class="title_cool">
+    <div class="wrapper">
+        <div class="typing-demo">
+            Asteroids Approaching Earth.
+        </div>
+    </div>
+</div>
+
+<div class="date">{{date}}</div>
+
+
+
+<div class="big_box">
+    <img src="{{ earth_img }}" alt="User Image" class="image_earth">
+    <div class="base_line"></div>
+
+    <div class="vertical_line" style="margin-right: 3%;"></div>
+
+    {% for el in result %}
+        <div class="vertical_line">
+            <div class="text_rotate">
+                {{el[1]}} - {{el[4]}} - {{el[6]}}
+            </div>
+        </div>
+    {% endfor %}
+
+    
+    
+
+</div>
+
+<div class="bottom_part">
+    Information gotten from NASA 
+</div>
+
+</body>
+</html>
