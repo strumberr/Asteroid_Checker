@@ -4,8 +4,9 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import requests
 import json
+import os
 
-asteroid_name = "2016 FY13"
+asteroid_name = "2010 GJ65"
 
 r = requests.get(f'https://ssd-api.jpl.nasa.gov/sbdb.api?sstr={asteroid_name}')
 
@@ -31,4 +32,27 @@ print(omega)
 print(i)
 print(w)
 
-orbit = pyasl.KeplerEllipse(a=0.896, per=0.496, e=0.447, Omega=331, i=1.2, w=77.7)
+try:
+    os.remove("static/orbits_models/plot.png")
+except:
+    pass
+
+orbit = pyasl.KeplerEllipse(a=float(a), per=float(per), e=float(e), Omega=float(omega), i=float(i), w=float(w))
+t = np.linspace(0, 4, 200)
+
+pos = orbit.xyzPos(t)
+
+plt.plot(0, 0, 'bo', markersize=9, label="Earth")
+plt.plot(pos[::, 1], pos[::, 0], 'k-', label="Satellite Trajectory")
+plt.plot(pos[0, 1], pos[0, 0], 'r*', label="Periapsis")
+
+plt.legend(loc="upper right")
+plt.title('Storms Cool Ass Orbital Simulation')
+
+ax = plt.gca() #you first need to get the axis handle
+ax.set_aspect(1) #sets the height to width ratio to 1.5. 
+
+plt.show()
+plt.savefig('static/orbits_models/plot.png')
+
+
