@@ -17,33 +17,8 @@ app.config['UPLOAD_FOLDER'] = images_folder
 
 app.secret_key = secret_key
 
-
 @app.route('/', methods=["GET", "POST"])
 def main():
-
-  today = date.today()
-  tomorrow = str(datetime.date.today() + datetime.timedelta(1))
-  today_replaced = str(today).replace("-", "/")
-  tomorrow_replaced = str(tomorrow).replace("-", "/")
-
-  today_tomorrow_date = f"{today_replaced} - {tomorrow_replaced}"
-
-  today = date.today()
-  tomorrow = str(datetime.date.today() + datetime.timedelta(1))
-
-  start_date = today
-  end_date = tomorrow
-
-  earth_img = os.path.join(app.config['UPLOAD_FOLDER'], 'earth_img.png')
-
-
-    
-  return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=".......")
-
-
-
-@app.route('/current-asteroids', methods=["GET", "POST"])
-def main2():
 
     today = date.today()
     tomorrow = str(datetime.date.today() + datetime.timedelta(1))
@@ -66,12 +41,8 @@ def main2():
     result2 = sorted(result, key=itemgetter(6))
 
 
-    new_el = result[0][1]
-    el_replace = new_el.replace("(", " ").replace(")", " ")
-    print(el_replace)
-    asteroid_orbit_calculator(el_replace)
 
-    
+    asteroid_orbit_calculator("2020 PK7")
     
 
 
@@ -80,6 +51,27 @@ def main2():
 
     
     return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result2)
+
+
+
+
+
+
+
+@app.route('/asteroid/<variable>', methods=['GET', "POST"])
+def daily_post(variable):
+
+    print(variable)
+
+    rmlogo = f'/static/orbits_models/{variable}.png'
+
+
+    return render_template("asteroid_info.html", rmlogo=rmlogo)
+
+
+
+
+
 
 
 
