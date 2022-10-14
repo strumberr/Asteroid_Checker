@@ -59,9 +59,17 @@ def daily_post(variable):
 
     print(variable)
 
-    asteroid_orbit = f'/static/orbits_models/{variable}.png'
+    variable_underscore = variable.replace(" ", "_")
 
-    asteroid_orbit_calculator(variable)
+    variable_underscore_remove = variable.replace("_", " ")
+
+    print(variable_underscore_remove)
+
+    asteroid_orbit_calculator(variable_underscore_remove)
+
+    asteroid_orbit = f'/static/orbits_models/{variable_underscore}.png'
+
+   
 
 
     return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit)

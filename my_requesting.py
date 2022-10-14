@@ -52,8 +52,14 @@ def nasa_api(start_date, end_date):
         asteroid_kmh = json_all["close_approach_data"][0]["relative_velocity"]["kilometers_per_hour"]
         asteroid_miss_earth_km = json_all["close_approach_data"][0]["miss_distance"]["kilometers"]
         asteroid_dangerous = json_all["is_potentially_hazardous_asteroid"]
+        asteroid_link = f"/{asteroid_name}"
+        try:
+            asteroid_link_replaced = asteroid_link.replace("(", "").replace(")", "").replace(" ", "_")
+            print(f"Ast_LINK --- {asteroid_link_replaced}")
+        except:
+            pass
 
-        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous]
+        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
 
 
         list2.append(results_combined)
@@ -82,8 +88,15 @@ def nasa_api(start_date, end_date):
         asteroid_kmh = json_all["close_approach_data"][0]["relative_velocity"]["kilometers_per_hour"]
         asteroid_miss_earth_km = json_all["close_approach_data"][0]["miss_distance"]["kilometers"]
         asteroid_dangerous = json_all["is_potentially_hazardous_asteroid"]
+        asteroid_link = f"/{asteroid_name}"
+        try:
+            asteroid_link_replaced = asteroid_link.replace("(", "").replace(")", "").replace(" ", "_")
+            print(f"Ast_LINK --- {asteroid_link_replaced}")
+        except:
+            pass
 
-        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous]
+
+        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
 
 
         list2.append(results_combined)

@@ -24,17 +24,20 @@
 
     <div class="vertical_line" style="margin-right: 3%;"></div>
 
+    
     {% for el in result %}
         <div class="vertical_line">
             <div class="text_rotate">
-                {{el[1]}} - {{el[4]}}
+                <a href="/asteroid{{el[8]}}">{{el[1]}} - {{el[4]}}</a>
             </div>
         </div>
     {% endfor %}
 
-    
-    
 
+</div>
+
+<div class="sorted_by_distance">
+    Sorted by Earth miss distance - Left to Right
 </div>
 
 <div class="bottom_part">

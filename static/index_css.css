@@ -50,7 +50,10 @@ html {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 20px;
     transition: 0.3s;
+    text-decoration: none;
 }
+
+
 
 .text_rotate:hover {
   cursor: pointer;
@@ -80,10 +83,37 @@ html {
 }
 
 
+a {
+  color: hotpink;
+}
+
+a:link {
+  text-decoration: none;
+  transition: 00.3s;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
 
 
-
-
+.sorted_by_distance {
+  color: white;
+  margin-top: 10px;
+  font-size: 20px;
+  font-family: 'Space Grotesk', sans-serif;
+  display: flex;
+  justify-content: center;
+  
+}
 
 
 
