@@ -7,6 +7,7 @@ from flask import Flask, render_template, request, redirect, flash
 import os
 from flask import Flask, flash, redirect, render_template, request, url_for
 from operator import itemgetter
+from orbit_plotter import asteroid_orbit_calculator
 
 app = Flask('main')
 secret_key = os.getenv('SECRET_KEY')
@@ -64,13 +65,13 @@ def main2():
 
     result2 = sorted(result, key=itemgetter(6))
 
-    for el in result:
-      new_el = el[1]
-      el_replace = new_el.replace("(", "").replace(")", "").replace(" ", "%")
-      link = f"https://ssd.jpl.nasa.gov/tools/sbdb_lookup.html#/?sstr={el_replace}&view=VOPC"
-      print(link)
 
-      
+    new_el = result[0][1]
+    el_replace = new_el.replace("(", " ").replace(")", " ")
+    print(el_replace)
+    asteroid_orbit_calculator(el_replace)
+
+    
     
 
 
