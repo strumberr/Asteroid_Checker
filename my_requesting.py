@@ -17,6 +17,10 @@ def nasa_api(start_date, end_date):
 
     list2 = []
 
+    global list_asteroid_names
+
+    list_asteroid_names = []
+
 
     r = requests.get(f'https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={api_key}')
 
@@ -53,6 +57,10 @@ def nasa_api(start_date, end_date):
 
 
         list2.append(results_combined)
+
+        asteroid_underscore = asteroid_name.replace(" ", "_")
+
+        list_asteroid_names.append(asteroid_underscore)
 
         
 

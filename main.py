@@ -1,4 +1,3 @@
-from requesting import nasa_api
 from dotenv import load_dotenv
 from datetime import date
 import datetime
@@ -8,6 +7,7 @@ import os
 from flask import Flask, flash, redirect, render_template, request, url_for
 from operator import itemgetter
 from orbit_plotter import asteroid_orbit_calculator
+from my_requesting import nasa_api
 
 app = Flask('main')
 secret_key = os.getenv('SECRET_KEY')
@@ -42,10 +42,6 @@ def main():
 
 
 
-    asteroid_orbit_calculator("2020 PK7")
-    
-
-
 
     print(result)
 
@@ -63,10 +59,12 @@ def daily_post(variable):
 
     print(variable)
 
-    rmlogo = f'/static/orbits_models/{variable}.png'
+    asteroid_orbit = f'/static/orbits_models/{variable}.png'
+
+    asteroid_orbit_calculator(variable)
 
 
-    return render_template("asteroid_info.html", rmlogo=rmlogo)
+    return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit)
 
 
 
