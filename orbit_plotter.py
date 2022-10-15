@@ -21,8 +21,10 @@ def asteroid_orbit_calculator(name):
     asteroid_name = name
 
     try:
+
+        session = requests.Session()
         
-        r = requests.get(f'https://ssd-api.jpl.nasa.gov/sbdb.api?sstr={asteroid_name}')
+        r = session.get(f'https://ssd-api.jpl.nasa.gov/sbdb.api?sstr={asteroid_name}')
 
         r_dict = r.json()
 
@@ -30,6 +32,7 @@ def asteroid_orbit_calculator(name):
 
 
         json_main = json.loads(json_object)
+
 
         a = json_main["orbit"]["elements"][1]["value"]
         per = json_main["orbit"]["elements"][2]["value"]

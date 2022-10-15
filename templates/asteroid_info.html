@@ -1,12 +1,42 @@
 <!DOCTYPE html>
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='hughyug.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='asteroid_info_css.css')}}" />
 <html>
 <head>
 <title>Page Title</title>
 </head>
-<body>
 
-<img src="{{asteroid_orbit}}" alt="FeaturedImage" style="width: 600px; height: auto;">
+<h1>Asteroid</h1>
+<h2>Description
 
-</body>
+</h2>
+
+<div class="whole_page">
+    <div class="first_row">
+        <div class="container_one_first_row">
+            <div class="title_container">
+                Diameter:
+            </div>
+            <div class="value_container">
+                {{diameter_min}}
+            </div>
+            
+        </div>
+
+        <div class="container_two_first_row">
+            <div class="title_container">
+                Relative Velocity:
+            </div>
+        </div>
+    </div>
+
+    <div class="second_row">
+    </div>
+
+    <div class="image">
+        <img src="{{asteroid_orbit}}" alt="FeaturedImage" style="width: 600px; height: auto; ">
+    </div>
+</div>
+
+
+
 </html>

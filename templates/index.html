@@ -25,10 +25,13 @@
     <div class="vertical_line" style="margin-right: 3%;"></div>
 
     
+
+
+    
     {% for el in result %}
         <div class="vertical_line">
             <div class="text_rotate">
-                <a href="/asteroid{{el[8]}}">{{el[1]}} - {{el[4]}}</a>
+                <a href="/asteroid{{el[8]}}">{{el[1]}} - {{el[4]}} UTC</a>
             </div>
         </div>
     {% endfor %}
