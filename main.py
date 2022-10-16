@@ -10,6 +10,7 @@ from orbit_plotter import asteroid_orbit_calculator
 from my_requesting import nasa_api
 from my_requesting import dict_asteroids
 
+
 app = Flask('main')
 secret_key = os.getenv('SECRET_KEY')
 
@@ -49,7 +50,7 @@ def main():
     print(result)
 
     
-    return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result2)
+    return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result)
 
 
 @app.route('/asteroid/<variable>', methods=['GET', "POST"])
@@ -79,11 +80,10 @@ def asteroid_info(variable):
 
     list_asteroids = dict_asteroids(start_date, end_date)
 
-
+    print(list_asteroids)
 
     for el in list_asteroids:
         variable_underscore_slash = f"/{variable_underscore}" 
-        print("element ----- " + el["asteroider_name"]["asteroid_link_replaced"])
         if variable_underscore_slash == el["asteroider_name"]["asteroid_link_replaced"]:
             print("true")
 
@@ -93,11 +93,11 @@ def asteroid_info(variable):
 
             asteroid_orbit = f'/static/orbits_models/{variable_underscore}.png'
             
-            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, diameter_min=diameter_min)
+            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, diameter_min=round(diameter_min))
 
 
 
-    return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit)
+    return render_template("asteroid_info.html")
 
 
 if __name__ == "__main__":

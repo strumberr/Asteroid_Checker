@@ -9,6 +9,12 @@ from matplotlib import font_manager
 import os.path
 from pathlib import Path
 import matplotlib
+from dotenv import load_dotenv
+
+
+load_dotenv()
+
+token_bearer = os.getenv('BEARER_TOKEN')
 
 matplotlib.use('Agg')
 
@@ -82,6 +88,31 @@ def asteroid_orbit_calculator(name):
 
         plt.savefig(f'static/orbits_models/{name2}.png', dpi=300)
         print(f'/static/orbits_models/{name2}.png')
+
+
+
+        try:
+            headers = {"Authorization": f"Bearer {token_bearer}"} #put ur access token after the word 'Bearer '
+            para = {
+                "name": f"{name2}", #file name to be uploaded
+                "parents": ["1dL1aqrEtEkKfhRpTqPmDkrsulo3VXKNH"] # make a folder on drive in which you want to upload files; then open that folder; the last thing in present url will be folder id
+            }
+            files = {
+                'data': ('metadata', json.dumps(para), 'application/json; charset=UTF-8'),
+                'file': ('application/zip',open(f"./static/orbits_models/{name2}.png", "rb")) # replace 'application/zip' by 'image/png' for png images; similarly 'image/jpeg' (also replace your file name)
+            }
+            r = requests.post(
+                "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
+                headers=headers,
+                files=files
+            )
+            print(r.text)
+        except:
+            pass
+
+
+
+
     except:
         return "The link you submitted doesn't correlate to any asteroid on here..."
 
