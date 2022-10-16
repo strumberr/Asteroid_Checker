@@ -5,36 +5,39 @@
 <title>Page Title</title>
 </head>
 
-<h1>Asteroid</h1>
-<h2>Description
-
-</h2>
+<h1>Name - {{asteroid_name}}</h1>
+<h2>ID - {{asteroid_ID}}</h2>
 
 <div class="whole_page">
     <div class="first_row">
         <div class="container_one_first_row">
             <div class="title_container">
-                Diameter:
+                Diameter: (m.)
             </div>
             <div class="value_container">
-                {{diameter_min}} m.
+                {{diameter_min}} 
             </div>
             
         </div>
 
-        <div class="container_two_first_row">
+        <div class="container_one_first_row">
             <div class="title_container">
-                Relative Velocity:
+                Relative Velocity: (km/h)
             </div>
+            <div class="value_container">
+                {{asteroid_kmh}}
+            </div>
+            
         </div>
     </div>
 
     <div class="second_row">
     </div>
 
-    <div class="image">
-        <img src="{{asteroid_orbit}}" alt="FeaturedImage" style="width: 600px; height: auto; ">
+    <div>
+        <img src="{{asteroid_orbit}}" alt="FeaturedImage" class="image">
     </div>
+
 </div>
 
 

@@ -50,7 +50,7 @@ def main():
     print(result)
 
     
-    return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result)
+    return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result2)
 
 
 @app.route('/asteroid/<variable>', methods=['GET', "POST"])
@@ -88,12 +88,15 @@ def asteroid_info(variable):
             print("true")
 
             diameter_min = el["asteroider_name"]["asteroid_diameter_min"]
+            asteroid_kmh = el["asteroider_name"]["asteroid_kmh"]
+            asteroid_name = el["asteroider_name"]["asteroid_name"]
+            asteroid_ID = el["asteroider_name"]["asteroid_ID"]
 
             asteroid_orbit_calculator(variable_underscore_remove)
 
             asteroid_orbit = f'/static/orbits_models/{variable_underscore}.png'
             
-            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, diameter_min=round(diameter_min))
+            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, diameter_min=round(diameter_min), asteroid_kmh=round(float(asteroid_kmh)), asteroid_name=asteroid_name, asteroid_ID=asteroid_ID)
 
 
 
