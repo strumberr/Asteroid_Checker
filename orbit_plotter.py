@@ -10,11 +10,55 @@ import os.path
 from pathlib import Path
 import matplotlib
 from dotenv import load_dotenv
+import pathlib
+import pandas as pd
+import dropbox
+from dropbox.exceptions import AuthError
 
 
 load_dotenv()
 
-token_bearer = os.getenv('BEARER_TOKEN')
+DROPBOX_ACCESS_TOKEN = os.getenv('DROPBOX_ACCESS_TOKEN')
+
+
+
+def dropbox_connect():
+    """Create a connection to Dropbox."""
+
+    try:
+        dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
+    except AuthError as e:
+        print('Error connecting to Dropbox with access token: ' + str(e))
+    return dbx
+
+
+def dropbox_upload_file(local_path, local_file, dropbox_file_path):
+    """Upload a file from the local machine to a path in the Dropbox app directory.
+
+    Args:
+        local_path (str): The path to the local file.
+        local_file (str): The name of the local file.
+        dropbox_file_path (str): The path to the file in the Dropbox app directory.
+
+    Example:
+        dropbox_upload_file('.', 'test.csv', '/stuff/test.csv')
+
+    Returns:
+        meta: The Dropbox file metadata.
+    """
+
+    try:
+        dbx = dropbox_connect()
+
+        local_file_path = pathlib.Path(local_path) / local_file
+
+        with local_file_path.open("rb") as f:
+            meta = dbx.files_upload(f.read(), dropbox_file_path, mode=dropbox.files.WriteMode("overwrite"))
+
+            return meta
+    except Exception as e:
+        print('Error uploading file to Dropbox: ' + str(e))
+
 
 matplotlib.use('Agg')
 
@@ -90,27 +134,7 @@ def asteroid_orbit_calculator(name):
         print(f'/static/orbits_models/{name2}.png')
 
 
-
-        try:
-            headers = {"Authorization": f"Bearer {token_bearer}"} #put ur access token after the word 'Bearer '
-            para = {
-                "name": f"{name2}", #file name to be uploaded
-                "parents": ["1dL1aqrEtEkKfhRpTqPmDkrsulo3VXKNH"] # make a folder on drive in which you want to upload files; then open that folder; the last thing in present url will be folder id
-            }
-            files = {
-                'data': ('metadata', json.dumps(para), 'application/json; charset=UTF-8'),
-                'file': ('application/zip',open(f"./static/orbits_models/{name2}.png", "rb")) # replace 'application/zip' by 'image/png' for png images; similarly 'image/jpeg' (also replace your file name)
-            }
-            r = requests.post(
-                "https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart",
-                headers=headers,
-                files=files
-            )
-            print(r.text)
-        except:
-            pass
-
-
+        dropbox_upload_file('static/orbits_models', f'{name2}.png', f'/asteroid_orbits/{name2}.png')
 
 
     except:
