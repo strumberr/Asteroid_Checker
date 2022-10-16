@@ -21,7 +21,7 @@ html {
 
 
 .allpage {
-    justify-content: space-evenly;
+    justify-content: center;
     vertical-align: middle;
     text-align: left;
 }
@@ -69,7 +69,7 @@ html {
     color: white;
     font-family: Arial;
     height: auto;
-    width: 700px;
+    width: 1000px;
     background-color: black;
     flex-wrap: wrap;
     justify-content: flex-start;
