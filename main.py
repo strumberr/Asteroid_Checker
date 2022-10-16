@@ -88,15 +88,31 @@ def asteroid_info(variable):
             print("true")
 
             diameter_min = el["asteroider_name"]["asteroid_diameter_min"]
+            diameter_max = el["asteroider_name"]["asteroid_diameter_max"]
+
+            diameter_result = (float(diameter_min) + float(diameter_max)) / 2
+
             asteroid_kmh = el["asteroider_name"]["asteroid_kmh"]
             asteroid_name = el["asteroider_name"]["asteroid_name"]
             asteroid_ID = el["asteroider_name"]["asteroid_ID"]
+            asteroid_miss_earth_km = el["asteroider_name"]["asteroid_miss_earth_km"]
+            asteroid_approach_time = el["asteroider_name"]["asteroid_approach_time"]
+            asteroid_dangerous = el["asteroider_name"]["asteroid_dangerous"]
+
+
 
             asteroid_orbit_calculator(variable_underscore_remove)
 
             asteroid_orbit = f'/static/orbits_models/{variable_underscore}.png'
             
-            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, diameter_min=round(diameter_min), asteroid_kmh=round(float(asteroid_kmh)), asteroid_name=asteroid_name, asteroid_ID=asteroid_ID)
+            return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, 
+                diameter_min=round(diameter_result), 
+                asteroid_kmh=round(float(asteroid_kmh)), 
+                asteroid_name=asteroid_name, 
+                asteroid_ID=asteroid_ID,
+                asteroid_miss_earth_km=round(float(asteroid_miss_earth_km)),
+                asteroid_approach_time=asteroid_approach_time,
+                asteroid_dangerous=asteroid_dangerous)
 
 
 

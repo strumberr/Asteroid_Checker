@@ -6,40 +6,82 @@
 </head>
 
 <h1>Name - {{asteroid_name}}</h1>
-<h2>ID - {{asteroid_ID}}</h2>
 
-<div class="whole_page">
-    <div class="first_row">
-        <div class="container_one_first_row">
-            <div class="title_container">
-                Diameter: (m.)
+<div class="allpage">
+    <div class="keywordslider">
+        <div class="keywordboxdesign">
+            <div class="boxtitle">
+                Diameter:
+                    <div class="boxtext2">
+                        {{diameter_min}} Meters
+                    </div>
             </div>
-            <div class="value_container">
-                {{diameter_min}} 
-            </div>
-            
         </div>
 
-        <div class="container_one_first_row">
-            <div class="title_container">
-                Relative Velocity: (km/h)
+        <div class="keywordboxdesign">
+            <div class="boxtitle">
+                Relative Velocity:
+                    <div class="boxtext2">
+                        {{asteroid_kmh}} Km/h
+                    </div>
             </div>
-            <div class="value_container">
-                {{asteroid_kmh}}
-            </div>
-            
         </div>
     </div>
 
-    <div class="second_row">
+
+    <div class="keywordslider">
+        <div class="keywordboxdesign">
+            <div class="boxtitle">
+                {{asteroid_name}}'s Current Orbit:
+                    <div class="image_div">
+                        <img src="{{asteroid_orbit}}" alt="FeaturedImage" class="fill">
+                    </div>
+            </div>
+        </div>
+
+        <div class="keywordboxdesign">
+
+            <div class="boxtitle">
+                Asteroid ID:
+                    <div class="boxtext2">
+                        {{asteroid_ID}}
+                    </div>
+            </div>
+
+            <div class="boxtitle">
+                Earth Miss Distance:
+                    <div class="boxtext2">
+                        {{asteroid_miss_earth_km}} Km
+                    </div>
+            </div>
+
+            <div class="boxtitle">
+                Asteroid-Earth Approach Time:
+                    <div class="boxtext2">
+                        {{asteroid_approach_time}} GMT
+                    </div>
+            </div>
+
+            <div class="boxtitle">
+                Is the asteroid potentially hazardous?
+                    <div class="boxtext2">
+                        {{asteroid_dangerous}}
+                    </div>
+            </div>
+        </div>
     </div>
 
-    <div>
-        <img src="{{asteroid_orbit}}" alt="FeaturedImage" class="image">
+
+    
+
+
+
+    <div class="boxdesign">
+        Tsting
+            <div class="boxtext">
+                testing2
+            </div>
+        testing3
     </div>
 
 </div>
-
-
-
-</html>
