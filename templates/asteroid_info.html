@@ -2,7 +2,8 @@
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='asteroid_info_css.css')}}" />
 <html>
 <head>
-<title>Page Title</title>
+<title>{{asteroid_name}}</title>
+<link rel="shortcut icon" href="{{ url_for('static', filename='asteroid_logo.png') }}">
 </head>
 
 <h1>Name - {{asteroid_name}}</h1>
