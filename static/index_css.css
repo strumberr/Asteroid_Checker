@@ -31,6 +31,15 @@ html {
     margin-top: 0%;
 }
 
+.description {
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  display: flex;
+  margin-left: 6%;
+  margin-top: 10px;
+}
+
 .base_line {
     height: 3px;
     width: 86%;
@@ -84,7 +93,7 @@ html {
 
 
 a {
-  color: hotpink;
+  color: white;
 }
 
 a:link {
@@ -144,4 +153,13 @@ a:active {
   50% {
     border-color: transparent
   }
+}
+
+
+.bottom_part {
+  color: white;
+  font-family: 'Space Grotesk', sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }

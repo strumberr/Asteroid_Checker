@@ -15,6 +15,7 @@
 </div>
 
 <div class="date">{{date}}</div>
+<div class="description">This website shows all of the asteroids that will approach earth in the date above </div>
 
 
 
@@ -31,7 +32,7 @@
     {% for el in result %}
         <div class="vertical_line">
             <div class="text_rotate">
-                <a href="/asteroid{{el[8]}}">{{el[1]}} - {{el[4]}} GMT</a>
+                <a href="/asteroid{{el[8]}}"><b style="font-weight: 600;">{{el[1]}}</b> - <b style="font-weight: 300; color: rgb(162, 162, 162);">{{el[4]}} GMT</b></a>
             </div>
         </div>
     {% endfor %}
@@ -42,9 +43,13 @@
 <div class="sorted_by_distance">
     Sorted by Earth miss distance - Left to Right
 </div>
-
+<br>
+<br>
+<br>
+<br>
 <div class="bottom_part">
-    Information gotten from NASA 
+    Information gotten from NASA
+    <a href="/sources_of_information"> - LINK</a>
 </div>
 
 </body>

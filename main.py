@@ -119,5 +119,15 @@ def asteroid_info(variable):
     return render_template("asteroid_info.html")
 
 
+
+@app.route('/sources_of_information', methods=["GET", "POST"])
+def information():
+
+
+    
+    return render_template("sources_of_information.html")
+
+
+
 if __name__ == "__main__":
 	app.run(host='0.0.0.0', port=5550, debug=True, threaded=True)

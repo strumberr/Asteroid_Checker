@@ -1,0 +1,21 @@
+html {
+    background-color: black;
+}
+
+h1 {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-left: 10px;
+}
+
+h3 {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-left: 20px;
+}
+
+p {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    margin-left: 30px;
+}
