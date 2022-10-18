@@ -20,6 +20,11 @@ load_dotenv()
 
 DROPBOX_ACCESS_TOKEN = os.getenv('DROPBOX_ACCESS_TOKEN')
 
+REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
+
+APP_KEY = os.getenv('APP_KEY')
+
+APP_SECRET = os.getenv('APP_SECRET')
 
 
 def dropbox_connect():
@@ -33,9 +38,14 @@ def dropbox_connect():
 
 def dropbox_upload_file(local_path, local_file, dropbox_file_path):
 
-    try:
-        dbx = dropbox_connect()
+    dbx = dropbox.Dropbox(
+            app_key = APP_KEY,
+            app_secret = APP_SECRET,
+            oauth2_refresh_token = REFRESH_TOKEN
+        )
 
+
+    try:
         local_file_path = pathlib.Path(local_path) / local_file
 
         with local_file_path.open("rb") as f:
