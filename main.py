@@ -103,7 +103,7 @@ def asteroid_info(variable):
 
             asteroid_orbit_calculator(variable_underscore_remove)
 
-            asteroid_orbit = f'/static/orbits_models/{variable_underscore}.png'
+            asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
             
             return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, 
                 diameter_min=round(diameter_result), 

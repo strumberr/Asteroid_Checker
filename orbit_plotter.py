@@ -86,12 +86,36 @@ def asteroid_orbit_calculator(name):
         omega = json_main["orbit"]["elements"][4]["value"]
         i = json_main["orbit"]["elements"][3]["value"]
         w = json_main["orbit"]["elements"][5]["value"]
+        print(a)
+        print(per)
+        print(e)
+        print(omega)
+        print(i)
+        print(w)
+
+        
 
 
         orbit = pyasl.KeplerEllipse(a=float(a), per=float(per), e=float(e), Omega=float(omega), i=float(i), w=float(w))
         t = np.linspace(0, 4, 200)
 
         pos = orbit.xyzPos(t)
+
+
+
+        a2 = 1.00000011
+        e2 = 0.01671022
+        omega2 = 18.272
+        i2 = 0.00005
+        w2 = 85.901
+
+        per2 = a2 * (1-e2)
+
+
+        orbit2 = pyasl.KeplerEllipse(a=float(a2), per=float(per2), e=float(e2), Omega=float(omega2), i=float(i2), w=float(w2))
+        t2 = np.linspace(0, 4, 200)
+
+        pos2 = orbit2.xyzPos(t2)
 
 
         #define y-unit to x-unit ratio
@@ -117,24 +141,25 @@ def asteroid_orbit_calculator(name):
         plt.rcParams['font.family'] = 'space grotesk'
         plt.rcParams['font.sans-serif'] = prop.get_name()
 
-        plt.plot(0, 0, 'bo', markersize=9, label="Sun", color="blue")
-        plt.plot(pos[::, 1], pos[::, 0], 'k-', label="Satellite Trajectory", color="orange")
-        plt.plot(pos[0, 1], pos[0, 0], 'r*', label="Periapsis", color="red")
+        plt.plot(pos2[::, 1], pos2[::, 0], 'k-', label="Earth Trajectory", color="yellow")
+        plt.plot(pos2[0, 1], pos2[0, 0], 'r*', label="Earth Periapsis", color="blue")
 
-        plt.legend(loc="upper right")
+        plt.plot(0, 0, 'bo', markersize=3, label="Sun", color="yellow")
+        plt.plot(pos[::, 1], pos[::, 0], 'k-', label="Asteroid Trajectory", color="orange")
+        plt.plot(pos[0, 1], pos[0, 0], 'r*', label="Asteroid Periapsis", color="gray")
+
+
+        plt.legend(loc="lower right", fontsize='xx-small', facecolor='black', labelcolor='white')
         plt.title(f"{name}'s Orbit")
 
         name2 = name.replace(" ", "_")
 
-        plt.savefig(f'static/orbits_models/{name2}.png', dpi=300)
+        plt.savefig(f'static/orbits_models/earth_{name2}.png', dpi=300)
         print(f'/static/orbits_models/{name2}.png')
 
 
-        dropbox_upload_file('static/orbits_models', f'{name2}.png', f'/asteroid_orbits/{name2}.png')
+        dropbox_upload_file('static/orbits_models', f'earth_{name2}.png', f'/asteroid_orbits/earth_{name2}.png')
 
 
     except:
         return "The link you submitted doesn't correlate to any asteroid on here..."
-
-
-
