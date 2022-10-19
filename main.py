@@ -9,6 +9,8 @@ from operator import itemgetter
 from orbit_plotter import asteroid_orbit_calculator
 from my_requesting import nasa_api
 from my_requesting import dict_asteroids
+import os 
+import os.path
 
 
 app = Flask('main')
@@ -100,11 +102,18 @@ def asteroid_info(variable):
             asteroid_dangerous = el["asteroider_name"]["asteroid_dangerous"]
 
 
+    
+            if os.path.exists(f'static/orbits_models/earth_{variable_underscore}.png'):
+                print(f'The file does exist')
+                asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
+            else:
+                #set default logo
+                print(f'The file does not exist')
+                asteroid_orbit_calculator(variable_underscore_remove)
+                asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
 
-            asteroid_orbit_calculator(variable_underscore_remove)
 
-            asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
-            
+
             return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, 
                 diameter_min=round(diameter_result), 
                 asteroid_kmh=round(float(asteroid_kmh)), 
