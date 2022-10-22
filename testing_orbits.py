@@ -13,6 +13,8 @@ from dropbox.exceptions import AuthError
 import pathlib
 from datetime import date
 import datetime
+import os
+import glob
 
 load_dotenv()
 
@@ -60,6 +62,10 @@ def dropbox_upload_file(local_path, local_file, dropbox_file_path):
 
 
 def render_all_asteroids():
+
+    delete_files_var = glob.glob('static/orbits_models/*')
+    for f in delete_files_var:
+        os.remove(f)
 
     today = date.today()
     tomorrow = str(datetime.date.today() + datetime.timedelta(1))
