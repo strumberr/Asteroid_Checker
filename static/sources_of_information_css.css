@@ -19,3 +19,23 @@ p {
     font-family: 'Space Grotesk', sans-serif;
     margin-left: 30px;
 }
+
+/* unvisited link */
+a:link {
+    color: white;
+  }
+  
+  /* visited link */
+  a:visited {
+    color: lightgreen;
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: hotpink;
+  }
+  
+  /* selected link */
+  a:active {
+    color: yellow;
+  }

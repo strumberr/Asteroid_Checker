@@ -11,6 +11,8 @@ from my_requesting import nasa_api
 from my_requesting import dict_asteroids
 import os 
 import os.path
+from testing_orbits import render_all_asteroids
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
 app = Flask('main')
@@ -103,14 +105,13 @@ def asteroid_info(variable):
 
 
     
-            if os.path.exists(f'static/orbits_models/earth_{variable_underscore}.png'):
+            if os.path.exists(f'static/orbits_models/animated_{variable_underscore}.png'):
                 print(f'The file does exist')
-                asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
+                asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.png'
             else:
                 #set default logo
                 print(f'The file does not exist')
-                asteroid_orbit_calculator(variable_underscore_remove)
-                asteroid_orbit = f'/static/orbits_models/earth_{variable_underscore}.png'
+                asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.gif'
 
 
 
@@ -136,6 +137,10 @@ def information():
     
     return render_template("sources_of_information.html")
 
+
+scheduler = BackgroundScheduler()
+job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=00, minute=2)
+scheduler.start()
 
 
 if __name__ == "__main__":
