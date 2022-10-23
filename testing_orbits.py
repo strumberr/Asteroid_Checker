@@ -136,14 +136,13 @@ def render_all_asteroids():
         name_replaced = el.replace(")", "").replace("(", "").replace(" ", "_")
 
         try:
-
             if os.path.exists(f'static/orbits_models/animated_{name_replaced}.gif'):
                 print(f'The file does exist')
                 pass
             else:
                 #set default logo
                 print(f'The file does not exist')
-        
+
 
                 name_replaced = el.replace(")", "").replace("(", "")
 
@@ -228,12 +227,14 @@ def render_all_asteroids():
                 pos2 = orbit2.xyzPos(t2)
 
 
-                plt.plot(pos2[::, 1], pos2[::, 0], 'k-', label="Earth Trajectory", color="yellow")
-                plt.plot(pos2[0, 1], pos2[0, 0], 'r*', label="Earth Periapsis", color="blue")
+                plt.plot(pos2[::, 1], pos2[::, 0], 'k-', label="Earth Trajectory", color="yellow", linewidth=1)
+                plt.plot(pos2[0, 1], pos2[0, 0], 'r*', label="Earth Periapsis", color="blue", linewidth=1)
 
-                plt.plot(0, 0, 'bo', markersize=9, label="Sun", color="yellow")
-                plt.plot(pos[::, 1], pos[::, 0], 'k-', label="Asteroid Trajectory", color="orange", linestyle="dotted")
-                plt.plot(pos[0, 1], pos[0, 0], 'r*', label="Asteroid Periapsis", color="gray")
+                plt.plot(0, 0, 'bo', markersize=9, label="Sun", color="yellow", linewidth=1)
+                plt.plot(pos[::, 1], pos[::, 0], 'k-', label="Asteroid Trajectory", color="orange", linestyle="dotted", linewidth=1)
+                plt.plot(pos[0, 1], pos[0, 0], 'r*', label="Asteroid Periapsis", color="gray", linewidth=1)
+
+                plt.grid(linewidth = 0.2)
 
 
                 #----------------------------
@@ -256,13 +257,13 @@ def render_all_asteroids():
                 plt.tick_params(
                     axis='both', 
                     which='both', 
-                    bottom=False, 
+                    bottom=True, 
                     top=False, 
-                    labelbottom=False,  
-                    left=False,
-                    labelleft=False)
+                    labelbottom=True,  
+                    left=True,
+                    labelleft=True)
 
-                plt.legend(loc="upper right")
+                plt.legend(loc="lower right", fontsize='xx-small')
 
                 plt.title(f'{asteroid_name} Orbital Simulation')
 
@@ -271,10 +272,10 @@ def render_all_asteroids():
                 myAnimation.save(f'static/orbits_models/animated_{name_replaced}.gif',
 
                                 writer=writer)
-                
+                    
                 dropbox_upload_file('static/orbits_models', f'animated_{name_replaced}.gif', f'/asteroid_orbits_animated/animated_{name_replaced}.gif')
-            
+                
         except:
             pass
 
-    
+        
