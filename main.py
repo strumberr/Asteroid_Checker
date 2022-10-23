@@ -138,8 +138,8 @@ def information():
     return render_template("sources_of_information.html")
 
 
-scheduler = BackgroundScheduler()
-job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=5, minute=23)
+scheduler = BackgroundScheduler(timezone="Europe/Madrid")
+job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=5, minute=28)
 scheduler.start()
 
 
