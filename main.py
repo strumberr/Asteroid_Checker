@@ -139,7 +139,7 @@ def information():
 
 
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=15, minute=46)
+job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=17, minute=13)
 scheduler.start()
 
 
