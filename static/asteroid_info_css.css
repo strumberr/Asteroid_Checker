@@ -87,6 +87,21 @@ html {
     justify-content: flex-start;
 }
 
+.keywordboxdesign3 {
+    border: 3px solid white;
+    padding: 20px;
+    margin: 20px;
+    color: white;
+    font-family: Arial;
+    height: auto;
+    width: 1000px;
+    background-color: black;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    background-color: #302244;
+
+}
+
 .keywordslider {
     display: flex;
     justify-content: flex-start;
