@@ -13,6 +13,9 @@ import os
 import os.path
 from testing_orbits import render_all_asteroids
 from apscheduler.schedulers.background import BackgroundScheduler
+import requests
+import json
+from math import sqrt
 
 
 app = Flask('main')
@@ -103,8 +106,37 @@ def asteroid_info(variable):
             asteroid_approach_time = el["asteroider_name"]["asteroid_approach_time"]
             asteroid_dangerous = el["asteroider_name"]["asteroid_dangerous"]
 
+            asteroid_miss_earth_km_rounded = round(float(asteroid_miss_earth_km))
 
-    
+
+            session2 = requests.Session()
+            r2 = session2.get(f'https://ssd-api.jpl.nasa.gov/sbdb.api?spk={asteroid_ID}&phys-par=1')
+            r_dict2 = r2.json()
+            json_object2 = json.dumps(r_dict2, indent = 4) 
+            json_main2 = json.loads(json_object2)
+
+            a2 = json_main2["orbit"]["elements"][1]["value"]
+            print(a2)
+
+            #orbit time
+            oy = float(a2) ** 3 
+            orbit_years = sqrt(oy)
+
+            #orbit average distance
+            e = json_main2["orbit"]["elements"][0]["value"]
+            b = sqrt(1-float(e)**2)
+            ab = float(a2)/0.000000006684587
+            c = ab * b
+            print(c)
+            average_orbit_distance = (c + ab)/2
+            average_orbit_distance_rounded = round(average_orbit_distance)
+
+            first_observed = json_main2["orbit"]["first_obs"]
+            last_observed = json_main2["orbit"]["last_obs"]
+            source = json_main2["signature"]["source"]
+
+
+
             if os.path.exists(f'static/orbits_models/animated_{variable_underscore}.png'):
                 print(f'The file does exist')
                 asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.png'
@@ -114,15 +146,25 @@ def asteroid_info(variable):
                 asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.gif'
 
 
+                asteroid_char = len(asteroid_name)
+                asteroid_char_2 = asteroid_char + 7
+
+
 
             return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, 
-                diameter_min=round(diameter_result), 
-                asteroid_kmh=round(float(asteroid_kmh)), 
+                diameter_min=f"{round(float(diameter_result)):,}",
+                asteroid_kmh=f"{round(float(asteroid_kmh)):,}",
                 asteroid_name=asteroid_name, 
                 asteroid_ID=asteroid_ID,
-                asteroid_miss_earth_km=round(float(asteroid_miss_earth_km)),
+                asteroid_miss_earth_km=f"{asteroid_miss_earth_km_rounded:,}",
                 asteroid_approach_time=asteroid_approach_time,
-                asteroid_dangerous=asteroid_dangerous)
+                asteroid_dangerous=asteroid_dangerous,
+                orbit_years=round(orbit_years, 2),
+                average_orbit_distance=f"{average_orbit_distance_rounded:,}",
+                first_observed=first_observed,
+                last_observed=last_observed,
+                source=source[-0:-3],
+                asteroid_char=asteroid_char_2)
 
 
 

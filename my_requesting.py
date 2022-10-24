@@ -117,14 +117,13 @@ def nasa_api(start_date, end_date):
     list_asteroid_names = []
 
     session = requests.Session()
-
     r = session.get(f'https://api.nasa.gov/neo/rest/v1/feed?start_date={start_date}&end_date={end_date}&api_key={api_key}')
-
     r_dict = r.json()
-
     json_object = json.dumps(r_dict, indent = 4) 
-
     json_main = json.loads(json_object)
+
+
+
 
 
     loop_iteration = 0

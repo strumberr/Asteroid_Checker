@@ -6,7 +6,11 @@
 <link rel="shortcut icon" href="{{ url_for('static', filename='asteroid_logo.png') }}">
 </head>
 
-<h1>Name - {{asteroid_name}}</h1>
+
+
+<h1>
+    Name - {{asteroid_name}}
+</h1>
 
 <div class="allpage">
     <div class="keywordslider">
@@ -61,6 +65,33 @@
                         {{asteroid_dangerous}}
                     </div>
             </div>
+
+            <div class="boxtitle">
+                Full orbit time:
+                    <div class="boxtext2">
+                        {{orbit_years}} Years
+                    </div>
+            </div>
+
+            <div class="boxtitle">
+                Average orbit distance:
+                    <div class="boxtext2">
+                        {{average_orbit_distance}} Km.
+                    </div>
+            </div>
+
+            <div class="boxtitle">
+                First Observed: (YYYY-MM-DD)
+                    <div class="boxtext2">
+                        {{first_observed}}
+                    </div>
+            </div>
+            <div class="boxtitle">
+                Last Observed: (YYYY-MM-DD)
+                    <div class="boxtext2">
+                        {{last_observed}}
+                    </div>
+            </div>
         </div>
 
         <div class="keywordboxdesign" style="background-color: black;">
@@ -72,4 +103,16 @@
             </div>
         </div>
     </div>
+
+    <div class="keywordslider">
+        <div class="keywordboxdesign2">
+            <div class="boxtitle">
+                Source Of Asteroid Information:
+                    <div class="boxtext2">
+                        {{source}}
+                    </div>
+            </div>
+        </div>
+    </div>
+    
 </div>
