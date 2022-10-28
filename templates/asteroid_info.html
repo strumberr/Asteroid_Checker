@@ -5,8 +5,9 @@
 <title>{{asteroid_name}}</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='asteroid_logo.png') }}">
 </head>
-
-
+<body>
+    <div class="main"></div>
+</body>
 
 <h1>
     Name - {{asteroid_name}}
@@ -36,7 +37,7 @@
 
     <div class="keywordslider">
 
-        <div class="keywordboxdesign">
+        <div class="keywordboxdesign4">
 
             <div class="boxtitle">
                 Asteroid ID:
@@ -92,27 +93,30 @@
                         {{last_observed}}
                     </div>
             </div>
+            <div class="boxtitle">
+                Orbit Circumference: (Length)
+                    <div class="boxtext2">
+                        {{circumference_orbit}} Km.
+                    </div>
+            </div>
         </div>
 
         <div class="keywordboxdesign3" style="background-color: black;">
             <div class="boxtitle" style="color: white;">
                 {{asteroid_name}}'s Current Orbit: (AU)
                     <div class="image_div">
-                        <img src="{{asteroid_orbit}}" alt="FeaturedImage" class="fill">
+                    </div>
+                    <div class="boxtitle2">
+                        Source Of Asteroid Information:
+                            <div class="boxtext3">
+                                {{source}}
+                            </div>
                     </div>
             </div>
         </div>
-    </div>
-
-    <div class="keywordslider">
-        <div class="keywordboxdesign2">
-            <div class="boxtitle">
-                Source Of Asteroid Information:
-                    <div class="boxtext2">
-                        {{source}}
-                    </div>
-            </div>
-        </div>
+        
     </div>
     
 </div>
+
+

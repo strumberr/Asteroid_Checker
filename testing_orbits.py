@@ -28,7 +28,7 @@ APP_KEY = os.getenv('APP_KEY')
 
 APP_SECRET = os.getenv('APP_SECRET')
 
-
+#connect to dropbox
 def dropbox_connect():
 
     try:
@@ -38,6 +38,7 @@ def dropbox_connect():
     return dbx
 
 
+#function for uploading files to dropbox
 def dropbox_upload_file(local_path, local_file, dropbox_file_path):
 
     dbx = dropbox.Dropbox(
@@ -56,8 +57,6 @@ def dropbox_upload_file(local_path, local_file, dropbox_file_path):
             return meta
     except Exception as e:
         print('Error uploading file to Dropbox: ' + str(e))
-
-
 
 
 
@@ -110,7 +109,7 @@ def render_all_asteroids():
     print(list_asteroid_names)
 
     el_in_list_asteroid_names = len(list_asteroid_names)
-    el_in_list_asteroid_names_new = (float(el_in_list_asteroid_names) * 25) / 60
+    el_in_list_asteroid_names_new = (float(el_in_list_asteroid_names) * 30) / 60
     print(f"Estimated Render time = {el_in_list_asteroid_names_new} Min.")
 
 
@@ -130,8 +129,13 @@ def render_all_asteroids():
 
     json_main = json.loads(json_object)
 
+    n = 0
     
     for el in list_asteroid_names:
+
+        n += 1
+
+        print(f"Rendering Number {n} out of {el_in_list_asteroid_names}:")
 
         name_replaced = el.replace(")", "").replace("(", "").replace(" ", "_")
 
@@ -278,4 +282,4 @@ def render_all_asteroids():
         except:
             pass
 
-        
+    

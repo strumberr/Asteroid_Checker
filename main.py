@@ -1,3 +1,4 @@
+#import all the necessary packages
 from dotenv import load_dotenv
 from datetime import date
 import datetime
@@ -30,7 +31,7 @@ app.secret_key = secret_key
 def main():
 
     
-
+    #get the current date and the date tomorrow
     today = date.today()
     tomorrow = str(datetime.date.today() + datetime.timedelta(1))
     today_replaced = str(today).replace("-", "/")
@@ -44,6 +45,7 @@ def main():
     start_date = today
     end_date = tomorrow
 
+    #get the earth image
     earth_img = os.path.join(app.config['UPLOAD_FOLDER'], 'earth_img.png')
 
 
@@ -63,6 +65,7 @@ def main():
 @app.route('/asteroid/<variable>', methods=['GET', "POST"])
 def asteroid_info(variable):
 
+    #get today's day and tomorrow's date
     today = date.today()
     tomorrow = str(datetime.date.today() + datetime.timedelta(1))
     today_replaced = str(today).replace("-", "/")
@@ -89,11 +92,14 @@ def asteroid_info(variable):
 
     print(list_asteroids)
 
+    #run a for loop to check if the asteroid accessed is in the list, if it matches then get all of the data on the asteroid
+
     for el in list_asteroids:
         variable_underscore_slash = f"/{variable_underscore}" 
         if variable_underscore_slash == el["asteroider_name"]["asteroid_link_replaced"]:
             print("true")
 
+            #using requests to get data
             diameter_min = el["asteroider_name"]["asteroid_diameter_min"]
             diameter_max = el["asteroider_name"]["asteroid_diameter_max"]
 
@@ -109,6 +115,7 @@ def asteroid_info(variable):
             asteroid_miss_earth_km_rounded = round(float(asteroid_miss_earth_km))
 
 
+            #get the asteroid ID using the information above and use the sbdb api to look it up
             session2 = requests.Session()
             r2 = session2.get(f'https://ssd-api.jpl.nasa.gov/sbdb.api?spk={asteroid_ID}&phys-par=1')
             r_dict2 = r2.json()
@@ -118,11 +125,15 @@ def asteroid_info(variable):
             a2 = json_main2["orbit"]["elements"][1]["value"]
             print(a2)
 
-            #orbit time
+            #orbit time calculation
             oy = float(a2) ** 3 
             orbit_years = sqrt(oy)
 
-            #orbit average distance
+            #length of orbit
+            hours_in_time = 8760 * float(orbit_years)
+            circumference_orbit = hours_in_time * float(asteroid_kmh)
+
+            #orbit average distance calculation
             e = json_main2["orbit"]["elements"][0]["value"]
             b = sqrt(1-float(e)**2)
             ab = float(a2)/0.000000006684587
@@ -136,7 +147,7 @@ def asteroid_info(variable):
             source = json_main2["signature"]["source"]
 
 
-
+            #check if the orbit animation exists
             if os.path.exists(f'static/orbits_models/animated_{variable_underscore}.png'):
                 print(f'The file does exist')
                 asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.png'
@@ -150,7 +161,7 @@ def asteroid_info(variable):
                 asteroid_char_2 = asteroid_char + 7
 
 
-
+            #render the template
             return render_template("asteroid_info.html", asteroid_orbit=asteroid_orbit, 
                 diameter_min=f"{round(float(diameter_result)):,}",
                 asteroid_kmh=f"{round(float(asteroid_kmh)):,}",
@@ -164,11 +175,16 @@ def asteroid_info(variable):
                 first_observed=first_observed,
                 last_observed=last_observed,
                 source=source[-0:-3],
-                asteroid_char=asteroid_char_2)
+                asteroid_char=asteroid_char_2,
+                circumference_orbit=f"{round(circumference_orbit):,}")
 
 
 
     return render_template("asteroid_info.html")
+
+
+
+
 
 
 
