@@ -5,6 +5,17 @@
 <title>{{asteroid_name}}</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='asteroid_logo.png') }}">
 </head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CZ8HFPPZKJ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CZ8HFPPZKJ');
+</script>
+
 <body>
     <div class="main"></div>
 </body>
@@ -105,6 +116,7 @@
             <div class="boxtitle" style="color: white;">
                 {{asteroid_name}}'s Current Orbit: (AU)
                     <div class="image_div">
+                        <img src="{{asteroid_orbit}}" alt="FeaturedImage" class="fill">
                     </div>
                     <div class="boxtitle2">
                         Source Of Asteroid Information:
