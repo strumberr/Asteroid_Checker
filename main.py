@@ -59,7 +59,9 @@ def main():
     print(result)
 
     
-    return render_template("index.html", date=today_tomorrow_date, earth_img=earth_img, result=result2)
+    return render_template("index.html", date=today_tomorrow_date, 
+    earth_img=earth_img, 
+    result=result2)
 
 
 @app.route('/asteroid/<variable>', methods=['GET', "POST"])

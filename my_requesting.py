@@ -146,7 +146,9 @@ def nasa_api(start_date, end_date):
         except:
             pass
 
-        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
+        asteroid_approach_time2 = asteroid_approach_time.split()
+
+        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time2[0], asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
 
 
         list2.append(results_combined)
@@ -182,8 +184,9 @@ def nasa_api(start_date, end_date):
         except:
             pass
 
+        asteroid_approach_time2 = asteroid_approach_time.split()
 
-        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time, asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
+        results_combined = [asteroid_ID, asteroid_name, asteroid_diameter_min, asteroid_diameter_max, asteroid_approach_time2[0], asteroid_kmh, round(float(asteroid_miss_earth_km)), asteroid_dangerous, asteroid_link_replaced]
 
 
         list2.append(results_combined)
