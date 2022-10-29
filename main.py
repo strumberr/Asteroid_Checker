@@ -197,7 +197,7 @@ def information():
 
 
 scheduler = BackgroundScheduler()
-job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=00, minute=2)
+job = scheduler.add_job(render_all_asteroids, 'cron', day_of_week ='mon-sun', hour=10, minute=54)
 scheduler.start()
 
 
