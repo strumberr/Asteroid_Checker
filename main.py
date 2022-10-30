@@ -17,6 +17,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import requests
 import json
 from math import sqrt
+from testing_orbits import dropbox_download_file
 
 
 app = Flask('main')
@@ -26,6 +27,7 @@ images_folder = os.path.join('static', 'images')
 app.config['UPLOAD_FOLDER'] = images_folder
 
 app.secret_key = secret_key
+
 
 @app.route('/', methods=["GET", "POST"])
 def main():
@@ -150,12 +152,16 @@ def asteroid_info(variable):
 
 
             #check if the orbit animation exists
-            if os.path.exists(f'static/orbits_models/animated_{variable_underscore}.png'):
+            if os.path.exists(f'static/orbits_models/animated_{variable_underscore}.gif'):
                 print(f'The file does exist')
-                asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.png'
+                asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.gif'
+
+                asteroid_char = len(asteroid_name)
+                asteroid_char_2 = asteroid_char + 7
             else:
                 #set default logo
                 print(f'The file does not exist')
+                dropbox_download_file(f"/asteroid_orbits_animated/animated_{variable_underscore}.gif", f"static/orbits_models/animated_{variable_underscore}.gif")
                 asteroid_orbit = f'/static/orbits_models/animated_{variable_underscore}.gif'
 
 

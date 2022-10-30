@@ -59,6 +59,23 @@ def dropbox_upload_file(local_path, local_file, dropbox_file_path):
         print('Error uploading file to Dropbox: ' + str(e))
 
 
+def dropbox_download_file(dropbox_file_path, local_file_path):
+    """Download a file from Dropbox to the local machine."""
+
+    try:
+        dbx = dropbox.Dropbox(
+            app_key = APP_KEY,
+            app_secret = APP_SECRET,
+            oauth2_refresh_token = REFRESH_TOKEN
+        )
+
+        with open(local_file_path, 'wb') as f:
+            metadata, result = dbx.files_download(path=dropbox_file_path)
+            f.write(result.content)
+    except Exception as e:
+        print('Error downloading file from Dropbox: ' + str(e))
+
+
 
 def render_all_asteroids():
 
