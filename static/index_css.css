@@ -40,27 +40,12 @@ html {
   margin-top: 10px;
 }
 
-.base_line {
-    height: 3px;
-    width: 86%;
-    background-color: white;
-    position: absolute;
-}
+
 
 .vertical_line_left {
     margin-left: 20%;
 }
 
-.text_rotate {
-    color: white;
-    transform: rotate(-70deg);
-    white-space: nowrap;
-    margin-top: -30px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 20px;
-    transition: 0.3s;
-    text-decoration: none;
-}
 
 
 
@@ -74,23 +59,171 @@ html {
     justify-content: space-between;
 }
 
-.vertical_line {
-    height: 30px;
-    width: 3px;
-    background-color: white;
-    border-radius: 10px;
-}
 
 
-.big_box {
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-device-width: 200px) {
+  .big_box {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     align-content: flex-end;
     padding-top: 35%;
+    margin-left: -300px;
+    margin-right: 12%;
+    margin-top: 500px;
+
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+
+  }
+
+  .sorted_by_distance {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-left: -900px;
+    margin-top: -300px;
+    
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+  }
+
+  .bottom_part {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 100%;
+
+  }
+
+  .base_line {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+  }
+
+  .text_rotate {
+    color: white;
+    transform: rotate(-70deg);
+    white-space: nowrap;
+    margin-top: -30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    transition: 0.3s;
+    text-decoration: none;
+    margin-right: 100px;
+  }
+
+  .vertical_line {
+    height: 30px;
+    width: 3px;
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 50px;
+}
+}
+
+
+
+
+
+
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-device-width: 500px) {
+  .big_box {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    align-content: flex-end;
+    padding-top: 10%;
     margin-left: 8%;
     margin-right: 12%;
+    margin-top: 20%;
+
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .sorted_by_distance {
+    color: white;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-left: 50px;
+    
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .bottom_part {
+    color: white;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 5%;
+
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  .base_line {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    position: absolute;
+  }
+
+  .text_rotate {
+    color: white;
+    transform: rotate(-70deg);
+    white-space: nowrap;
+    margin-top: -30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    transition: 0.3s;
+    text-decoration: none;
+  }
+
+  .vertical_line {
+    height: 30px;
+    width: 3px;
+    background-color: white;
+    border-radius: 10px;
+    margin-right: 0px;
+  }
 }
+
+
+
 
 
 
@@ -132,15 +265,7 @@ a:hover::before {
 }
 
 
-.sorted_by_distance {
-  color: white;
-  margin-top: 10px;
-  font-size: 20px;
-  font-family: 'Space Grotesk', sans-serif;
-  display: flex;
-  justify-content: center;
-  
-}
+
 
 
 
@@ -159,6 +284,7 @@ a:hover::before {
   font-family: monospace;
   font-size: 2em;
   color: white;
+  flex-wrap: wrap;
 }
 
 @keyframes typing {
@@ -174,10 +300,3 @@ a:hover::before {
 }
 
 
-.bottom_part {
-  color: white;
-  font-family: 'Space Grotesk', sans-serif;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-}
