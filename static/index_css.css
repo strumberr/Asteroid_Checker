@@ -20,6 +20,7 @@ html {
     height: auto;
     width: 12%;
     padding-bottom: 13%;
+    margin-bottom: -100px;
 }
 
 .date {
