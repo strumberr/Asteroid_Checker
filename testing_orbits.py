@@ -263,17 +263,25 @@ def render_all_asteroids():
 
                 red_dot, = plt.plot(pos[0][1], pos[0][0], 'wo')
 
+                red_dot2, = plt.plot(pos2[0][1], pos2[0][0], 'wo')
+
                 def animate(i):
                     red_dot.set_data(pos[i][1], pos[i][0])
-                    return red_dot,
+                    red_dot2.set_data(pos2[i][1], pos2[i][0])
+                    return red_dot, red_dot2,
+
+
+                
+
+                    
 
                 # create animation using the animate() function
-                myAnimation = animation.FuncAnimation(fig, animate,
+                myAnimation = animation.FuncAnimation(fig, animate, 
 
                                     frames=np.arange(0, len(t), 1), interval=40,
 
                                     blit=True, repeat=True)
-
+            
 
                 plt.tick_params(
                     axis='both', 
@@ -298,5 +306,3 @@ def render_all_asteroids():
                 
         except:
             pass
-
-    
